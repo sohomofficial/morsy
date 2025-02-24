@@ -1,55 +1,56 @@
 import ConvertCT from '@/components/ConvertCT';
 import ConvertTC from '@/components/ConvertTC';
 import { ModeToggle } from '@/components/mode-toggle';
-import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const Home = () => {
   return (
-    <div className='mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8'>
+    <div className='mx-auto max-w-screen-xl min-h-screen place-content-center py-16 px-4 sm:px-6 lg:px-8 font-mono'>
       <div className='mx-auto max-w-xl'>
-        <h1 className='scroll-m-20 text-4xl text-center font-extrabold tracking-tight lg:text-5xl'>
-          Morsy
-        </h1>
-
-        <p className='mt-4 text-center text-xl text-muted-foreground'>
-          Hey, I&apos;m Morsy. I help you convert text to morse code and vice
-          versa.
-        </p>
-        <hr className='my-4' />
-
-        <p className='mb-4 text-sm'>
-          But wait, what is morse code? Well, in simple terms it is a system of
-          encoding text characters using sequences of dots (.) and dashes (-) to
-          represent letters and numbers, used for communication. Give it a try
-          and send someone a secret coded message which most of the people
-          won&apos;t understand.
-        </p>
-        <ModeToggle />
-        <Tabs defaultValue='text_to_code' className='mt-6'>
-          <TabsList className='w-full'>
-            <TabsTrigger value='text_to_code' className='w-full'>
-              Text to Code
-            </TabsTrigger>
-            <TabsTrigger value='code_to_text' className='w-full'>
-              Code to Text
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value='text_to_code'>
-            <ConvertTC />
-          </TabsContent>
-          <TabsContent value='code_to_text'>
-            <ConvertCT />
-          </TabsContent>
-        </Tabs>
-        <p className='mt-4 text-center'>
-          Created with ❤️ by
-          <Button variant={'link'} asChild className='pl-1 font-bold'>
-            <a href='https://github.com/sohomofficial' target='_blank'>
-              Sohom
-            </a>
-          </Button>
-        </p>
+        <Card className='ring-1 ring-teal-400'>
+          <CardHeader>
+            <CardTitle className='text-teal-400'>Morsy</CardTitle>
+            <CardDescription>
+              Hey, I&apos;m Morsy. I help you convert text to morse code and
+              vice versa.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue='text_to_code'>
+              <TabsList className='w-full'>
+                <TabsTrigger value='text_to_code' className='w-full'>
+                  T &rarr; C
+                </TabsTrigger>
+                <TabsTrigger value='code_to_text' className='w-full'>
+                  C &rarr; T
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value='text_to_code'>
+                <ConvertTC />
+              </TabsContent>
+              <TabsContent value='code_to_text'>
+                <ConvertCT />
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+          <CardFooter className='w-full flex flex-col gap-4 sm:flex-row items-center justify-between'>
+            <p className='text-sm'>
+              Created with ❤️ by{' '}
+              <a href='https://github.com/sohomofficial' target='_blank'>
+                Sohom
+              </a>
+            </p>
+            <ModeToggle />
+          </CardFooter>
+        </Card>
       </div>
     </div>
   );

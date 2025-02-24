@@ -18,12 +18,8 @@ import { useState } from 'react';
 import { Textarea } from './ui/textarea';
 import CopyButton from './CopyButton';
 
-const TTMRegex = /^[A-Za-z0-9\s]+$/;
-
 const formSchema = z.object({
-  text_to_code: z.string().regex(TTMRegex, {
-    message: 'Your input can only contain alphanumeric characters and spaces',
-  }),
+  text_to_code: z.string(),
 });
 
 const ConvertTC = () => {
@@ -38,18 +34,20 @@ const ConvertTC = () => {
   return (
     <>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className='mt-6 space-y-8 rounded-lg p-4 shadow-lg dark:border sm:p-6 lg:p-8'
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className='mt-6 space-y-8'>
           <FormField
             control={form.control}
             name='text_to_code'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Text to code</FormLabel>
+                <FormLabel>Text</FormLabel>
                 <FormControl>
-                  <Textarea placeholder='Enter your text here' {...field} />
+                  <Textarea
+                    placeholder='Enter your text here'
+                    rows={9}
+                    className='uppercase border-teal-400 focus-visible:ring-0 focus-visible:ring-offset-0'
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -61,12 +59,12 @@ const ConvertTC = () => {
         </form>
       </Form>
 
-      <div className='px-4 mt-6 text-center py-16 sm:px-6 lg:px-8 shadow-lg dark:border'>
+      <div className='mt-6 text-center py-16'>
         <div className='flex justify-between'>
           <h2 className='text-sm font-medium'>Output</h2>
           {output && <CopyButton textToCopy={output} />}
         </div>
-        <p className='text-base mt-8 bg-primary-foreground px-3 py-2 rounded-md'>
+        <p className='text-sm p-2 mt-2'>
           {output
             ? output
             : 'Your output code will appear here. Type something and submit to see it.'}
